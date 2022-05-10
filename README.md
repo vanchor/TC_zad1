@@ -67,15 +67,16 @@ b.
 Plik Dockerfile:
 ```dockerfile
 #Yakorev Volodymyr
-FROM node:16.15.0
+FROM node:10-slim
+LABEL maintainer="Yakore Volodymyr <yakorev.volodymyr@pollub.edu.pl>"
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
+
+RUN npm install --production
 
 EXPOSE 3000
 CMD [ "node", "server.js" ]
@@ -110,8 +111,10 @@ c.    ```docker logs <CONTAINER ID>```
 
 Czasy w logach i po stronie klienta są różne. Dzieje się tak, ponieważ nie jest określona strefa czasowa po stronie serwera. Z tego powodu czas serwera jest ustawiony na +0 (w tym przypadku  07:08:09) , a czas klienta na +2 (09:08:23)
 
-d.
+d. ```docker images -a```
 
+```docker history vy_zadanie1```
+![image](https://user-images.githubusercontent.com/72700887/167642964-ea9894e1-0633-4b4c-b839-4f2a54a34f5a.png)
 
 
 
